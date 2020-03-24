@@ -10,7 +10,7 @@
 ### 2.AOP 的作用与优势
 **作用：** 在程序运行期间，不修改源码对已有方法进行增强。    
   
-**优势 ：**  
+**优势：**  
 &emsp;&emsp;1.集中处理某一关注点/横切逻辑  
 &emsp;&emsp;2.可以很方便地添加/删除关注点  
 &emsp;&emsp;3.侵入性少，增强代码可读性及可维护性  
@@ -19,7 +19,7 @@
 &emsp;&emsp;权限控制、缓存控制、事务控制、审计日志、性能监控、分布式追踪、异常处理  
 
 ### 4.AOP底层原理
-使用动态代理实现  
+使用动态代理实现    
 （1）基于JDK的代理
 
     适用于有接口情况，使用动态代理创建接口实现类代理对象
@@ -34,8 +34,8 @@
 
 ![](-d7c45db4-1f69-4b5c-b5f5-a9624176e6f8.png)
 
-- **特点：**字节码随用随创建，随用随加载
-- **作用：**不修改源码的基础上对方法增强
+- **特点:** 字节码随用随创建，随用随加载
+- **作用：** 不修改源码的基础上对方法增强
 - **分类：**
 &emsp;&emsp;基于接口的动态代理
 
@@ -47,23 +47,23 @@
 
 &emsp;&emsp;提供者：`JDK官方`
 
-**如何创建代理对象：**
+&emsp;&emsp;**如何创建代理对象：**
 
-&emsp;&emsp;使用Proxy类中的`newProxyInstance`方法
+&emsp;&emsp;&emsp;&emsp;使用Proxy类中的`newProxyInstance`方法
 
-**创建代理对象的要求：**
+&emsp;&emsp;**创建代理对象的要求：**
 
-&emsp;&emsp;被代理类最少实现的一个接口，如果没有则不能使用
+&emsp;&emsp;&emsp;&emsp;被代理类最少实现的一个接口，如果没有则不能使用
 
-**`newProxyInstance`方法的参数：**
+&emsp;&emsp;**`newProxyInstance`方法的参数：**
 
-&emsp;&emsp;`ClassLoader`: 用于加载代理对象字节码，和被代理对象使用相同的类加载器，固定写法
+&emsp;&emsp;&emsp;&emsp;`ClassLoader`: 用于加载代理对象字节码，和被代理对象使用相同的类加载器，固定写法
 
-&emsp;&emsp;`Class [ ]` : 用于让代理对象和被代理对象有相同的方法，固定写法
+&emsp;&emsp;&emsp;&emsp;`Class [ ]` : 用于让代理对象和被代理对象有相同的方法，固定写法
 
-&emsp;&emsp;`InvocationHandler` : 用于提供增强的代码
+&emsp;&emsp;&emsp;&emsp;`InvocationHandler` : 用于提供增强的代码
 
-&emsp;&emsp;它是让我们写如何代理。我们一般是写一个该接口的实现类，通常是匿名内部类，但不是必须的。此接口的实现类都是谁用谁写。
+&emsp;&emsp;&emsp;&emsp;它是让我们写如何代理。我们一般是写一个该接口的实现类，通常是匿名内部类，但不是必须的。此接口的实现类都是谁用谁写。
 
 - 生产厂家接口IProducer
 
@@ -149,21 +149,21 @@
 
 &emsp;&emsp;提供者：第三方 cglib 库
 
-**如何创建代理对象：**
+&emsp;&emsp;**如何创建代理对象：**
 
-&emsp;&emsp;使用 Enhancer 类中的 create 方法
+&emsp;&emsp;&emsp;&emsp;使用 Enhancer 类中的 create 方法
 
-**创建代理对象的要求：**
+&emsp;&emsp;**创建代理对象的要求：**
 
-&emsp;&emsp;被代理类不能是最终类
+&emsp;&emsp;&emsp;&emsp;被代理类不能是最终类
 
-**create 方法的参数：**
+&emsp;&emsp;**create 方法的参数：**
 
-&emsp;&emsp; Class : 它是用于被指定代理对象的字节码
+&emsp;&emsp;&emsp;&emsp; Class : 它是用于被指定代理对象的字节码
 
-&emsp;&emsp;callback : 用于提供增强的代码
+&emsp;&emsp;&emsp;&emsp;callback : 用于提供增强的代码
 
-&emsp;&emsp;它是让我们写如何代理。我们一般是写一个该接口的实现类，通常是匿名内部类，但不是必须的。此接口的实现类都是谁用谁写。我们一般写的都是该接口的子实现类：MethodInterCeptor
+&emsp;&emsp;&emsp;&emsp;它是让我们写如何代理。我们一般是写一个该接口的实现类，通常是匿名内部类，但不是必须的。此接口的实现类都是谁用谁写。我们一般写的都是该接口的子实现类：MethodInterCeptor
 
 - 生产者
 
