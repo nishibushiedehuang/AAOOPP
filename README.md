@@ -228,9 +228,9 @@
 
 (2)使用 **aop : config** 标签来表明开始 AOP 的设置
 
-(3)使用 **aop : aspect** 标签配置切面
-&emsp;&emsp;id 属性：是给切面提供一个唯一标识
-&emsp;&emsp;ref 属性：是指定通知类 Bean 的 id
+(3)使用 **aop : aspect** 标签配置切面  
+&emsp;&emsp;id 属性：是给切面提供一个唯一标识   
+&emsp;&emsp;ref 属性：是指定通知类 Bean 的 id  
 
 (4)在 **aop : aspect** 标签的内部使用对应标签来配置通知的类型
 
@@ -255,20 +255,17 @@
 &emsp;&emsp;&emsp;&emsp;- 包名可以使用  `..` 表示当前包和子包：```* *..AccountServiceImpl.saveAccount()```    
 &emsp;&emsp;&emsp;&emsp;- 类名和方法名都可以使用  `*` 来实现通配：```* *..*.*()```  
 &emsp;&emsp;&emsp;&emsp;- 参数列表：  
-- 可以直接使写数据类型：  
-- 基本类型直接写名称（如 int ）  
-- 引用类型写包名.类名的方式 （如 java.lang.String ）  
-- 可以使用通配符表四任意类型，但是必须有参数  
-- 可以使用 `..` 表示有无参数即可，有参数可以是任意类型  
-- 实际开发中切入点表达式的通常写法：  
-- 切到业务层类实现下的所有方法：`pointcut="execution(* com.greyson.service.impl.*.*(..))"`  
-- 配置切入点表达式（aop : pointcut）：  
-- id属性用于指定表达式的唯一标识，expression属性用于指定表达式内容  
-- 此标签写在 aop : aspect 标签内部只能当前切面使用，在其外部则所有切面可用
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;- 可以直接使写数据类型：  
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;- 基本类型直接写名称（如 int ）  
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;- 引用类型写包名.类名的方式 （如 java.lang.String ）  
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;- 可以使用通配符表四任意类型，但是必须有参数  
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;- 可以使用 `..` 表示有无参数即可，有参数可以是任意类型  
+&emsp;&emsp;**实际开发中切入点表达式的通常写法：**    
+&emsp;&emsp;&emsp;&emsp;- 切到业务层类实现下的所有方法：`pointcut="execution(* com.greyson.service.impl.*.*(..))"`  
               
 ### 3. Spring常用通知类型
-        前置通知（aop : before）：在切入点方法执行之前执行
-        后置通知（aop : after-returning）：在切入点方法正常执行之后执行，它和异常通知永远只能执行一个
-        异常通知（aop : after-throwing）：在切入点方法执行产生异常之后执行，它和后置通知永远只能执行一个
-        最终通知（aop : after）：无论切入点方法是否正常执行它都会在其后面执行
+      前置通知（aop : before）：在切入点方法执行之前执行
+      后置通知（aop : after-returning）：在切入点方法正常执行之后执行，它和异常通知永远只能执行一个
+      异常通知（aop : after-throwing）：在切入点方法执行产生异常之后执行，它和后置通知永远只能执行一个
+      最终通知（aop : after）：无论切入点方法是否正常执行它都会在其后面执行
 ### 4.环绕通知
