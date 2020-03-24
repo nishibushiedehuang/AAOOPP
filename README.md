@@ -242,26 +242,24 @@
 
 &emsp;&emsp;**切入点表达式的写法：**  
 - 关键字：**execution ( 表达式 )**  
-- 表达式：
-```访问修饰符 + 返回值 + 包名...类名.方法名（参数列表）```  
-&emsp;&emsp;&emsp;&emsp;- 标准的表达式写法:
-```public void com.greyson.service.impl.IAccountServiceImpl.saveAccount()```  
-&emsp;&emsp;&emsp;&emsp;- 全通配写法：``` pointcut="execution(* * ..*.*(..))"```  
-&emsp;&emsp;&emsp;&emsp;- 访问修饰符可以省略：``` void com.itheima.service.impl.AccountServiceImpl.saveAccount()```  
-&emsp;&emsp;&emsp;&emsp;- 返回值可以使用通配符，表示任意返回值：``` * com.itheima.service.impl.AccountServiceImpl.saveAccount()```      
-&emsp;&emsp;&emsp;&emsp;- 包名可以使用通配符，表示任意包，但是有几级包就需要写几个 `*.`：  
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;``` * *.*.*.*.AccountServiceImpl.saveAccount())```  
-&emsp;&emsp;&emsp;&emsp;- 包名可以使用  `..` 表示当前包和子包：```* *..AccountServiceImpl.saveAccount()```    
-&emsp;&emsp;&emsp;&emsp;- 类名和方法名都可以使用  `*` 来实现通配：```* *..*.*()```  
-&emsp;&emsp;&emsp;&emsp;- 参数列表：  
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;- 可以直接使写数据类型：  
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;- 基本类型直接写名称（如 int ）  
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;- 引用类型写包名.类名的方式 （如 java.lang.String ）  
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;- 可以使用通配符表四任意类型，但是必须有参数  
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;- 可以使用 `..` 表示有无参数即可，有参数可以是任意类型  
+- 表达式：```访问修饰符 + 返回值 + 包名...类名.方法名（参数列表）```  
+- 标准的表达式写法:```public void com.greyson.service.impl.IAccountServiceImpl.saveAccount()```  
+- 全通配写法：``` pointcut="execution(* * ..*.*(..))"```  
+- 访问修饰符可以省略：``` void com.itheima.service.impl.AccountServiceImpl.saveAccount()```  
+- 返回值可以使用通配符，表示任意返回值：``` * com.itheima.service.impl.AccountServiceImpl.saveAccount()```      
+- 包名可以使用通配符，表示任意包，但是有几级包就需要写几个 `*.`：  
+&emsp;&emsp;&emsp;&emsp;``` * *.*.*.*.AccountServiceImpl.saveAccount())```  
+- 包名可以使用 `..` 表示当前包和子包：```* *..AccountServiceImpl.saveAccount()```    
+- 类名和方法名都可以使用  `*` 来实现通配：```* *..*.*()```  
+- 参数列表：  
+&emsp;&emsp;&emsp;&emsp;- 可以直接使写数据类型：  
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;- 基本类型直接写名称（如 int ）  
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;- 引用类型写包名.类名的方式 （如 java.lang.String ）  
+&emsp;&emsp;&emsp;&emsp;- 可以使用通配符表四任意类型，但是必须有参数  
+&emsp;&emsp;&emsp;&emsp;- 可以使用 `..` 表示有无参数即可，有参数可以是任意类型  
 
 &emsp;&emsp;**实际开发中切入点表达式的通常写法：**    
-&emsp;&emsp;&emsp;&emsp;- 切到业务层类实现下的所有方法：`pointcut="execution(* com.greyson.service.impl.*.*(..))"`  
+- 切到业务层类实现下的所有方法：`pointcut="execution(* com.greyson.service.impl.*.*(..))"`  
               
 ### 3. Spring常用通知类型
       前置通知（aop : before）：在切入点方法执行之前执行
