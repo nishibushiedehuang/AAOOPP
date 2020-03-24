@@ -234,7 +234,7 @@
 
 (4)在 **aop : aspect** 标签的内部使用对应标签来配置通知的类型
 
-&emsp;&emsp; **aop :before** 标识前置通知
+&emsp;&emsp;**aop :before** 标识前置通知
 
 &emsp;&emsp;**method 属性:** 用于指定类中哪个放啊是前置通知
 
@@ -243,28 +243,21 @@
 &emsp;&emsp;**切入点表达式的写法：**  
 &emsp;&emsp;&emsp;&emsp;-关键字：**execution ( 表达式 )**  
 &emsp;&emsp;&emsp;&emsp;- 表达式：
-```访问修饰符 + 返回值 + 包名...类名.方法名（参数列表）``` 
+```访问修饰符 + 返回值 + 包名...类名.方法名（参数列表）```  
 &emsp;&emsp;&emsp;&emsp;- 标准的表达式写法:
-
-    public void com.greyson.service.impl.IAccountServiceImpl.saveAccount()  
+```public void com.greyson.service.impl.IAccountServiceImpl.saveAccount()```  
 &emsp;&emsp;&emsp;&emsp;- 全通配写法： 
-
-    pointcut="execution(* * ..*.*(..))"  
+``` pointcut="execution(* * ..*.*(..))"```  
 &emsp;&emsp;&emsp;&emsp;- 访问修饰符可以省略  
-    
-    void com.itheima.service.impl.AccountServiceImpl.saveAccount() 
+``` void com.itheima.service.impl.AccountServiceImpl.saveAccount()``` 
 &emsp;&emsp;&emsp;&emsp;- 返回值可以使用通配符，表示任意返回值  
-    
-    * com.itheima.service.impl.AccountServiceImpl.saveAccount()  
+``` * com.itheima.service.impl.AccountServiceImpl.saveAccount()```  
 &emsp;&emsp;&emsp;&emsp;- 包名可以使用通配符，表示任意包，但是有几级包就需要写几个 `*.`   
-    
-    * *.*.*.*.AccountServiceImpl.saveAccount()) 
+``` * *.*.*.*.AccountServiceImpl.saveAccount())``` 
 &emsp;&emsp;&emsp;&emsp;- 包名可以使用  `..` 表示当前包和子包  
-    
-    * *..AccountServiceImpl.saveAccount()  
+```* *..AccountServiceImpl.saveAccount()```  
 &emsp;&emsp;&emsp;&emsp;- 类名和方法名都可以使用  `*` 来实现通配  
-    
-    * *..*.*()
+```* *..*.*()```
 &emsp;&emsp;&emsp;&emsp;- 参数列表：  
 - 可以直接使写数据类型：  
 - 基本类型直接写名称（如 int ）  
