@@ -216,18 +216,25 @@
 
 - **Advice (通知/增强):**  
 &emsp;&emsp;所谓通知是指拦截到 Joinpoint 之后所要做的事情就是通知。通知的类型：前置通知，后置通知，异常通知，最终通知，环绕通知。
+
 - **Joinpoint (连接点):**  
 &emsp;&emsp;所谓连接点是指那些被拦截到的点。在 Spring中，这些点指的是方法，因为 Spring 只支持方法类型的连接点。
+
 - **Pointcut (切入点):**  
 &emsp;&emsp;所谓切入点是指我们要对哪些 Joinpoint 进行拦截的定义。
+
 - **Introduction (引介):**  
 &emsp;&emsp;引介是一种特殊的通知在不修改类代码的前提下, Introduction 可以在运行期为类动态地添加一些方法或 Field。   
+
 - **Target (目标对象):**  
 &emsp;&emsp;代理的目标对象。
+
 - **Weaving (织入):**  
 &emsp;&emsp;是指把增强应用到目标对象来创建新的代理对象的过程。Spring 采用动态代理织入，而 AspectJ 采用编译期织入和类装载期织入。
+
 - **Proxy (代理):**   
 &emsp;&emsp;一个类被 AOP 织入增强后，就产生一个结果代理类。   
+
 - **Aspect (切面):**  
 &emsp;&emsp;是切入点和通知（引介）的结合。
 
@@ -240,40 +247,49 @@
               <aop:before method="printLog" pointcut="execution(* com.itheima.service.impl.*.*(..))"></aop:before>
           </aop:aspect>
       </aop:config>
-1. 把通知 Bean 也交给 Spring 来管理
-2. 使用 aop : config 标签来表明开始 AOP 的设置
-3. 使用 aop : aspect 标签配置切面
-    - id 属性：是给切面提供一个唯一标识
-    - ref 属性：是指定通知类 Bean 的 id
-4. 在 aop : aspect 标签的内部使用对应标签来配置通知的类型
-    - **aop :before** 标识前置通知
-    - **method 属性:** 用于指定类中哪个放啊是前置通知
-    - **pointcut 属性：** 用于指定切入点表达式，该切入点表达式指的是对业务层中哪些方法增强
-    **切入点表达式的写法：**
-        - 关键字：execution ( 表达式 )
-        - 表达式：
-            - 标准写法：访问修饰符 + 返回值 + 包名.类名.方法名（参数列表）
-            - 举例：public void com.greyson.service.impl.IAccountServiceImpl.saveAccount ( )
-        - 全通配写法：`* * ..*.*(..)`
-            - 访问修饰符可以省略
-            - 返回值可以使用通配符，表示任意返回值
-            - 包名可以使用通配符，表示任意包，但是有几级包就需要写几个 `*.`
-            - 包名可以使用  `..` 表示当前包和子包
-            - 类名和方法名都可以使用  `*` 来实现通配
-            - 参数列表：
+(1). 把通知**Bean** 也交给 Spring 来管理
+
+(2). 使用 **aop : config** 标签来表明开始 AOP 的设置
+
+(3). 使用 **aop : aspect** 标签配置切面
+&emsp;&emsp;id 属性：是给切面提供一个唯一标识
+&emsp;&emsp;ref 属性：是指定通知类 Bean 的 id
+
+(4). 在 **aop : aspect** 标签的内部使用对应标签来配置通知的类型
+
+&emsp;&emsp; **aop :before** 标识前置通知
+
+&emsp;&emsp;**method 属性:** 用于指定类中哪个放啊是前置通知
+
+&emsp;&emsp;**pointcut 属性：** 用于指定切入点表达式，该切入点表达式指的是对业务层中哪些方法增强  
+
+&emsp;&emsp;**切入点表达式的写法：**
+&emsp;&emsp;&emsp;&emsp;-关键字：**execution ( 表达式 )**
+&emsp;&emsp;&emsp;&emsp;- 表达式：
+&emsp;&emsp;&emsp;&emsp;- 标准写法：访问修饰符 + 返回值 + 包名.类名.方法名（参数列表）
+&emsp;&emsp;&emsp;&emsp;- 举例：public void com.greyson.service.impl.IAccountServiceImpl.saveAccount ( )
+&emsp;&emsp;&emsp;&emsp;- 全通配写法：`pointcut="execution(* * ..*.*(..))"`
+&emsp;&emsp;&emsp;&emsp;- 访问修饰符可以省略
+&emsp;&emsp;&emsp;&emsp;- 返回值可以使用通配符，表示任意返回值
+&emsp;&emsp;&emsp;&emsp;- 包名可以使用通配符，表示任意包，但是有几级包就需要写几个 `*.`
+&emsp;&emsp;&emsp;&emsp;- 包名可以使用  `..` 表示当前包和子包
+&emsp;&emsp;&emsp;&emsp;- 类名和方法名都可以使用  `*` 来实现通配
+
+&emsp;&emsp;&emsp;&emsp;- 参数列表：
                 - 可以直接使写数据类型：
                     - 基本类型直接写名称（如 int ）
                     - 引用类型写包名.类名的方式 （如 java.lang.String ）
                 - 可以使用通配符表四任意类型，但是必须有参数
                 - 可以使用 `..` 表示有无参数即可，有参数可以是任意类型
         - 实际开发中切入点表达式的通常写法：
-            - 切到业务层类实现下的所有方法：`* com.greyson.service.impl.*.*(..)`
+            - 切到业务层类实现下的所有方法：`pointcut="execution(* com.greyson.service.impl.*.*(..))"`
         - 配置切入点表达式（aop : pointcut）：
             - id属性用于指定表达式的唯一标识，expression属性用于指定表达式内容
             - 此标签写在 aop : aspect 标签内部只能当前切面使用，在其外部则所有切面可用
-    3. Spring常用通知类型
+              
+### 3. Spring常用通知类型
         - 前置通知（aop : before）：在切入点方法执行之前执行
         - 后置通知（aop : after-returning）：在切入点方法正常执行之后执行，它和异常通知永远只能执行一个
         - 异常通知（aop : after-throwing）：在切入点方法执行产生异常之后执行，它和后置通知永远只能执行一个
         - 最终通知（aop : after）：无论切入点方法是否正常执行它都会在其后面执行
-    4.  环绕通知
+### 4.环绕通知
