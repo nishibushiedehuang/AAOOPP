@@ -39,7 +39,6 @@
 - **作用：** 不修改源码的基础上对方法增强
 - **分类：**  
 &emsp;&emsp;基于**接口**的动态代理
-
 &emsp;&emsp;基于**子类**的动态代理
 
 ### 1、基于接口的动态代理
@@ -154,6 +153,7 @@
 &emsp;&emsp;&emsp;&emsp;它是让我们写如何代理。我们一般是写一个该接口的实现类，通常是匿名内部类，但不是必须的。此接口的实现类都是谁用谁写。我们一般写的都是该接口的子实现类：MethodInterCeptor
 
 - 生产者
+
         public class Producer {
           // 销售
             public void saleProduct(float money) {
@@ -165,6 +165,7 @@
             }
         }
 - 消费者
+
         /**
          * 模拟一个消费者
          */
@@ -223,15 +224,15 @@
               <aop:before method="printLog" pointcut="execution(* com.itheima.service.impl.*.*(..))"></aop:before>
           </aop:aspect>
       </aop:config>
-(1). 把通知**Bean** 也交给 Spring 来管理
+(1)把通知**Bean** 也交给 Spring 来管理
 
-(2). 使用 **aop : config** 标签来表明开始 AOP 的设置
+(2)使用 **aop : config** 标签来表明开始 AOP 的设置
 
-(3). 使用 **aop : aspect** 标签配置切面
+(3)使用 **aop : aspect** 标签配置切面
 &emsp;&emsp;id 属性：是给切面提供一个唯一标识
 &emsp;&emsp;ref 属性：是指定通知类 Bean 的 id
 
-(4). 在 **aop : aspect** 标签的内部使用对应标签来配置通知的类型
+(4)在 **aop : aspect** 标签的内部使用对应标签来配置通知的类型
 
 &emsp;&emsp; **aop :before** 标识前置通知
 
@@ -242,8 +243,7 @@
 &emsp;&emsp;**切入点表达式的写法：**  
 &emsp;&emsp;&emsp;&emsp;-关键字：**execution ( 表达式 )**  
 &emsp;&emsp;&emsp;&emsp;- 表达式：
-
-     访问修饰符 + 返回值 + 包名...类名.方法名（参数列表）  
+```访问修饰符 + 返回值 + 包名...类名.方法名（参数列表）``` 
 &emsp;&emsp;&emsp;&emsp;- 标准的表达式写法:
 
     public void com.greyson.service.impl.IAccountServiceImpl.saveAccount()  
