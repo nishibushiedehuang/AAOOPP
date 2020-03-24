@@ -72,16 +72,10 @@
          * 对生产厂家要求的接口
          */
         public interface IProducer {
-            /**
-             * 销售
-             * @param money
-             */
+             // 销售
             public void saleProduct(float money);
-        
-            /**
-             * 售后
-             * @param money
-             */
+       
+             //售后
             public void afterService(float money);
         }
 
@@ -92,18 +86,11 @@
          */
         public class Producer implements IProducer {
         
-            /**
-             * 销售
-             * @param money
-             */
+            // 销售
             public void saleProduct(float money) {
                 System.out.println("销售产品，并拿到钱：" + money);
             }
-        
-            /**
-             * 售后
-             * @param money
-             */
+            // 售后
             public void afterService(float money) {
                 System.out.println("提供售后服务，并拿到钱：" + money);
             }
@@ -167,28 +154,17 @@
 &emsp;&emsp;&emsp;&emsp;它是让我们写如何代理。我们一般是写一个该接口的实现类，通常是匿名内部类，但不是必须的。此接口的实现类都是谁用谁写。我们一般写的都是该接口的子实现类：MethodInterCeptor
 
 - 生产者
-
         public class Producer {
-        
-            /**
-             * 销售
-             * @param money
-             */
+          // 销售
             public void saleProduct(float money) {
                 System.out.println("销售产品，并拿到钱：" + money);
             }
-        
-            /**
-             * 售后
-             * @param money
-             */
+          // 售后
             public void afterService(float money) {
                 System.out.println("提供售后服务，并拿到钱：" + money);
             }
         }
-
 - 消费者
-
         /**
          * 模拟一个消费者
          */
@@ -275,21 +251,21 @@
 &emsp;&emsp;&emsp;&emsp;- 包名可以使用  `..` 表示当前包和子包
 &emsp;&emsp;&emsp;&emsp;- 类名和方法名都可以使用  `*` 来实现通配
 
-&emsp;&emsp;&emsp;&emsp;- 参数列表：
-                - 可以直接使写数据类型：
-                    - 基本类型直接写名称（如 int ）
-                    - 引用类型写包名.类名的方式 （如 java.lang.String ）
-                - 可以使用通配符表四任意类型，但是必须有参数
-                - 可以使用 `..` 表示有无参数即可，有参数可以是任意类型
-        - 实际开发中切入点表达式的通常写法：
-            - 切到业务层类实现下的所有方法：`pointcut="execution(* com.greyson.service.impl.*.*(..))"`
-        - 配置切入点表达式（aop : pointcut）：
-            - id属性用于指定表达式的唯一标识，expression属性用于指定表达式内容
-            - 此标签写在 aop : aspect 标签内部只能当前切面使用，在其外部则所有切面可用
+&emsp;&emsp;&emsp;&emsp;- 参数列表：  
+- 可以直接使写数据类型：  
+- 基本类型直接写名称（如 int ）  
+- 引用类型写包名.类名的方式 （如 java.lang.String ）  
+- 可以使用通配符表四任意类型，但是必须有参数  
+- 可以使用 `..` 表示有无参数即可，有参数可以是任意类型  
+- 实际开发中切入点表达式的通常写法：  
+- 切到业务层类实现下的所有方法：`pointcut="execution(* com.greyson.service.impl.*.*(..))"`  
+- 配置切入点表达式（aop : pointcut）：  
+- id属性用于指定表达式的唯一标识，expression属性用于指定表达式内容  
+- 此标签写在 aop : aspect 标签内部只能当前切面使用，在其外部则所有切面可用
               
 ### 3. Spring常用通知类型
-        - 前置通知（aop : before）：在切入点方法执行之前执行
-        - 后置通知（aop : after-returning）：在切入点方法正常执行之后执行，它和异常通知永远只能执行一个
-        - 异常通知（aop : after-throwing）：在切入点方法执行产生异常之后执行，它和后置通知永远只能执行一个
-        - 最终通知（aop : after）：无论切入点方法是否正常执行它都会在其后面执行
+        前置通知（aop : before）：在切入点方法执行之前执行
+        后置通知（aop : after-returning）：在切入点方法正常执行之后执行，它和异常通知永远只能执行一个
+        异常通知（aop : after-throwing）：在切入点方法执行产生异常之后执行，它和后置通知永远只能执行一个
+        最终通知（aop : after）：无论切入点方法是否正常执行它都会在其后面执行
 ### 4.环绕通知
