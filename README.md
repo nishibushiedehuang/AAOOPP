@@ -212,7 +212,7 @@
             }
         }
 ## 三、AOP实例
-### 1、AOP术语
+### 1.AOP术语
 
 - **Advice (通知/增强):**  
 &emsp;&emsp;所谓通知是指拦截到 Joinpoint 之后所要做的事情就是通知。通知的类型：前置通知，后置通知，异常通知，最终通知，环绕通知。
@@ -231,18 +231,25 @@
 - **Aspect (切面):**  
 &emsp;&emsp;是切入点和通知（引介）的结合。
 
-### 2 、Spring中基于 xml 的 AOP 配置步骤
-
+### 2.Spring中基于 xml 的 AOP 配置步骤
+   <!--配置AOP-->
+      <aop:config>
+          <!--配置切面 -->
+          <aop:aspect id="logAdvice" ref="logger">
+              <!-- 配置通知的类型，并且建立通知方法和切入点方法的关联-->
+              <aop:before method="printLog" pointcut="execution(* com.itheima.service.impl.*.*(..))"></aop:before>
+          </aop:aspect>
+      </aop:config>
 1. 把通知 Bean 也交给 Spring 来管理
 2. 使用 aop : config 标签来表明开始 AOP 的设置
 3. 使用 aop : aspect 标签配置切面
     - id 属性：是给切面提供一个唯一标识
     - ref 属性：是指定通知类 Bean 的 id
 4. 在 aop : aspect 标签的内部使用对应标签来配置通知的类型
-    1. aop : before 标识前置通知
-        - method 属性：用于指定类中哪个放啊是前置通知
-        - pointcut 属性：用于指定切入点表达式，该切入点表达式指的是对业务层中哪些方法增强
-    2. 切入点表达式的写法：
+    - **aop :before** 标识前置通知
+    - **method 属性:** 用于指定类中哪个放啊是前置通知
+    - **pointcut 属性：** 用于指定切入点表达式，该切入点表达式指的是对业务层中哪些方法增强
+    **切入点表达式的写法：**
         - 关键字：execution ( 表达式 )
         - 表达式：
             - 标准写法：访问修饰符 + 返回值 + 包名.类名.方法名（参数列表）
