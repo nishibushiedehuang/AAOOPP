@@ -241,8 +241,8 @@
 &emsp;&emsp;**pointcut 属性：** 用于指定切入点表达式，该切入点表达式指的是对业务层中哪些方法增强  
 
 &emsp;&emsp;**切入点表达式的写法：**  
-&emsp;&emsp;&emsp;&emsp;- 关键字：**execution ( 表达式 )**  
-&emsp;&emsp;&emsp;&emsp;- 表达式：
+- 关键字：**execution ( 表达式 )**  
+- 表达式：
 ```访问修饰符 + 返回值 + 包名...类名.方法名（参数列表）```  
 &emsp;&emsp;&emsp;&emsp;- 标准的表达式写法:
 ```public void com.greyson.service.impl.IAccountServiceImpl.saveAccount()```  
