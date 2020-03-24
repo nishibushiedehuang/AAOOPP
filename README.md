@@ -38,7 +38,7 @@
 - **特点:** 字节码随用随创建，随用随加载
 - **作用：** 不修改源码的基础上对方法增强
 - **分类：**  
-&emsp;&emsp;基于**接口**的动态代理
+&emsp;&emsp;基于**接口**的动态代理  
 &emsp;&emsp;基于**子类**的动态代理
 
 ### 1、基于接口的动态代理
@@ -232,7 +232,7 @@
 &emsp;&emsp;id 属性：是给切面提供一个唯一标识   
 &emsp;&emsp;ref 属性：是指定通知类 Bean 的 id  
 
-(4)在 **aop : aspect** 标签的内部使用对应标签来配置通知的类型
+(4)在**aop : aspect** 标签的内部使用对应标签来配置通知的类型
 
 &emsp;&emsp;**aop :before** 标识前置通知
 
@@ -241,7 +241,7 @@
 &emsp;&emsp;**pointcut 属性：** 用于指定切入点表达式，该切入点表达式指的是对业务层中哪些方法增强  
 
 &emsp;&emsp;**切入点表达式的写法：**  
-&emsp;&emsp;&emsp;&emsp;-关键字：**execution ( 表达式 )**  
+&emsp;&emsp;&emsp;&emsp;- 关键字：**execution ( 表达式 )**  
 &emsp;&emsp;&emsp;&emsp;- 表达式：
 ```访问修饰符 + 返回值 + 包名...类名.方法名（参数列表）```  
 &emsp;&emsp;&emsp;&emsp;- 标准的表达式写法:
