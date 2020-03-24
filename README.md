@@ -248,16 +248,11 @@
 ```public void com.greyson.service.impl.IAccountServiceImpl.saveAccount()```  
 &emsp;&emsp;&emsp;&emsp;- 全通配写法： 
 ``` pointcut="execution(* * ..*.*(..))"```  
-&emsp;&emsp;&emsp;&emsp;- 访问修饰符可以省略  
-``` void com.itheima.service.impl.AccountServiceImpl.saveAccount()``` 
-&emsp;&emsp;&emsp;&emsp;- 返回值可以使用通配符，表示任意返回值  
-``` * com.itheima.service.impl.AccountServiceImpl.saveAccount()```  
-&emsp;&emsp;&emsp;&emsp;- 包名可以使用通配符，表示任意包，但是有几级包就需要写几个 `*.`   
-``` * *.*.*.*.AccountServiceImpl.saveAccount())``` 
-&emsp;&emsp;&emsp;&emsp;- 包名可以使用  `..` 表示当前包和子包  
-```* *..AccountServiceImpl.saveAccount()```  
-&emsp;&emsp;&emsp;&emsp;- 类名和方法名都可以使用  `*` 来实现通配  
-```* *..*.*()```
+&emsp;&emsp;&emsp;&emsp;- 访问修饰符可以省略:``` void com.itheima.service.impl.AccountServiceImpl.saveAccount()```  
+&emsp;&emsp;&emsp;&emsp;- 返回值可以使用通配符，表示任意返回值:``` * com.itheima.service.impl.AccountServiceImpl.saveAccount()```      
+&emsp;&emsp;&emsp;&emsp;- 包名可以使用通配符，表示任意包，但是有几级包就需要写几个 `*.`:``` * *.*.*.*.AccountServiceImpl.saveAccount())```  
+&emsp;&emsp;&emsp;&emsp;- 包名可以使用  `..` 表示当前包和子包:```* *..AccountServiceImpl.saveAccount()```    
+&emsp;&emsp;&emsp;&emsp;- 类名和方法名都可以使用  `*` 来实现通配:```* *..*.*()```  
 &emsp;&emsp;&emsp;&emsp;- 参数列表：  
 - 可以直接使写数据类型：  
 - 基本类型直接写名称（如 int ）  
