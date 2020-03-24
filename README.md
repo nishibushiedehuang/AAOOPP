@@ -217,12 +217,22 @@
 ## 三、AOP实例
 ### 1、AOP术语
 
-- Advice (通知/增强): 所谓通知是指拦截到 Joinpoint 之后所要做的事情就是通知。 通知的类型：前置通知,后置通知,异常通知,最终通知,环绕通知。
-- Joinpoint (连接点): 所谓连接点是指那些被拦截到的点。在 Spring 中,这些点指的是方法,因为 Spring 只支持方法类型的 连接点。
-- Pointcut (切入点): 所谓切入点是指我们要对哪些 Joinpoint 进行拦截的定义。
-- Introduction (引介): 引介是一种特殊的通知在不修改类代码的前提下, Introduction 可以在运行期为类动态地添加一些方 法或 Field。 Target(目标对象): 代理的目标对象。
-- Weaving (织入): 是指把增强应用到目标对象来创建新的代理对象的过程。 Spring 采用动态代理织入，而 AspectJ 采用编译期织入和类装载期织入。
-- Proxy（代理）: 一个类被 AOP 织入增强后，就产生一个结果代理类。 Aspec t(切面): 是切入点和通知（引介）的结合。
+- **Advice (通知/增强):**  
+&emsp;&emsp;所谓通知是指拦截到 Joinpoint 之后所要做的事情就是通知。 通知的类型：前置通知,后置通知,异常通知,最终通知,环绕通知。
+- **Joinpoint (连接点):**  
+&emsp;&emsp;所谓连接点是指那些被拦截到的点。在 Spring 中,这些点指的是方法,因为 Spring 只支持方法类型的 连接点。
+- **Pointcut (切入点):**  
+&emsp;&emsp;所谓切入点是指我们要对哪些 Joinpoint 进行拦截的定义。
+- **Introduction (引介):**
+&emsp;&emsp;引介是一种特殊的通知在不修改类代码的前提下, Introduction 可以在运行期为类动态地添加一些方 法或 Field。   
+- **Target(目标对象):**  
+&emsp;&emsp;代理的目标对象。
+- **Weaving (织入):**  
+&emsp;&emsp;是指把增强应用到目标对象来创建新的代理对象的过程。 Spring 采用动态代理织入，而 AspectJ 采用编译期织入和类装载期织入。
+- **Proxy（代理）:**   
+&emsp;&emsp;一个类被 AOP 织入增强后，就产生一个结果代理类。   
+- **Aspec t(切面):**  
+&emsp;&emsp;是切入点和通知（引介）的结合。
 
 ### 2 、Spring中基于 xml 的 AOP 配置步骤
 
