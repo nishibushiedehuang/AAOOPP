@@ -236,7 +236,7 @@
 
 &emsp;&emsp;**aop :before** 标识前置通知
 
-&emsp;&emsp;**method 属性:** 用于指定类中哪个放啊是前置通知
+&emsp;&emsp;**method 属性:** 用于指定类中哪个方法是前置通知
 
 &emsp;&emsp;**pointcut 属性：** 用于指定切入点表达式，该切入点表达式指的是对业务层中哪些方法增强  
 
@@ -260,7 +260,121 @@
 
 &emsp;&emsp;**实际开发中切入点表达式的通常写法：**    
 - 切到业务层类实现下的所有方法：`pointcut="execution(* com.greyson.service.impl.*.*(..))"`  
-              
+
+### 3.创建一个AOP实例（Spring_AOP）  
+(1)创建一个Maven project  
+   
+(2)创建账户的业务层接口及实现类  
+```
+  package com.learn.service;
+  /**
+   * 账户的业务层接口
+   */
+  public interface IAccountService {
+      /**
+       * 模拟保存账户
+       */
+     void saveAccount();
+      /**
+       * 模拟更新账户
+       * @param i
+       */
+     void updateAccount(int i);
+      /**
+       * 删除账户
+       * @return
+       */
+     int  deleteAccount();
+  }
+  ```    
+  
+```
+  package com.learn.service.impl;
+  
+  import com.learn.service.IAccountService;
+  /**
+   * 账户的业务层实现类
+   */
+  public class AccountServiceImpl implements IAccountService{
+
+      @Override
+      public void saveAccount() {
+          System.out.println("执行了保存");
+      }
+
+      @Override
+      public void updateAccount(int i) {
+          System.out.println("执行了更新"+i);
+
+      }
+
+      @Override
+      public int deleteAccount() {
+          System.out.println("执行了删除");
+          return 0;
+      }
+  }
+```  
+(3)创建一个工具类，让其在切入点方法之前执行  
+```
+package com.learn.utils;
+
+/**
+ * 用于记录日志的工具类，它里面提供了公共的代码
+ */
+public class Logger {
+
+    /**
+     * 用于打印日志：计划让其在切入点方法执行之前执行（切入点方法就是业务层方法）
+     */
+    public  void printLog(){
+        System.out.println("Logger类中的pringLog方法开始记录日志了。。。");
+    }
+}
+```  
+(4)配置bean.xml文件  
+```
+    <!-- 配置srping的Ioc,把service对象配置进来-->
+    <bean id="accountService" class="com.itheima.service.impl.AccountServiceImpl"></bean>
+    
+    <!-- 配置Logger类 -->
+    <bean id="logger" class="com.itheima.utils.Logger"></bean>
+    
+    <!--配置AOP-->
+    <aop:config>
+        <!--配置切面 -->
+        <aop:aspect id="logAdvice" ref="logger">
+            <!-- 配置通知的类型，并且建立通知方法和切入点方法的关联-->
+            <aop:before method="printLog" pointcut="execution(* com.itheima.service.impl.*.*(..))"></aop:before>
+        </aop:aspect>
+    </aop:config>
+```
+(5)编写AOP测试类，运行，前置通知织入成功！
+```
+package com.learn.test;
+
+import com.learn.service.IAccountService;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+/**
+ * 测试AOP的配置
+ */
+public class AOPTest {
+
+    public static void main(String[] args) {
+        //1.获取容器
+        ApplicationContext ac = new ClassPathXmlApplicationContext("bean.xml");
+        //2.获取对象
+        IAccountService as = (IAccountService)ac.getBean("accountService");
+        //3.执行方法
+        as.saveAccount();
+        as.updateAccount(1);
+        as.deleteAccount();
+    }
+}
+```
+
 ### 3. Spring常用通知类型
       前置通知（aop : before）：在切入点方法执行之前执行
       后置通知（aop : after-returning）：在切入点方法正常执行之后执行，它和异常通知永远只能执行一个
